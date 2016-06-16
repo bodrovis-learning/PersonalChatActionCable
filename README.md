@@ -1,5 +1,7 @@
 # Conversations Between Users (1-to-1) with Devise and ActionCable
 
+[Demo](https://bodrovis-personal-chat.herokuapp.com)
+
 This app has the following features:
 
 * User management
