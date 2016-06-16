@@ -1,0 +1,11 @@
+<h1>New</h1>
+
+<%= form_for @personal_message do |f| %>
+  <%= label_tag 'Recevier', 'receiver' %>
+  <%= select_tag 'receiver', options_from_collection_for_select(@receivers, "id", "email") %>
+
+  <%= f.label :body %>
+  <%= f.text_area :body %>
+
+  <%= f.submit %>
+<% end %>

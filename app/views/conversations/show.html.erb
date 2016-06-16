@@ -1,0 +1,15 @@
+<h1>To <%= @conversation.receiver.email %></h1>
+
+<% @conversation.personal_messages.each do |personal_messages| %>
+  <p><%= personal_messages.body %></p>
+  <p>at <strong><%= personal_messages.created_at %></strong><br>
+    by <strong><%= personal_messages.user.email %></strong></p>
+  <hr>
+<% end %>
+
+<%= form_for @personal_message, url: conversation_path(@conversation), method: :patch do |f| %>
+  <%= f.label :body %>
+  <%= f.text_area :body %>
+
+  <%= f.submit %>
+<% end %>

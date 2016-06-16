@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>PersonalChat</title>
+  <%= csrf_meta_tags %>
+
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+</head>
+
+<body>
+<% flash.each do |key, value| %>
+  <div class="alert alert-<%= key %>">
+    <%= value %>
+  </div>
+<% end %>
+
+<% if user_signed_in? %>
+  <p><%= link_to 'Conversations', root_path %></p>
+  <p>
+    Logged in as <%= current_user.email %>
+    <%= link_to 'Log Off', destroy_user_session_path, method: :delete %>
+  </p>
+<% end %>
+
+<%= yield %>
+</body>
+</html>
