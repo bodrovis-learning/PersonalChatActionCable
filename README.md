@@ -6,7 +6,7 @@ Based on another tutorial on creating [chat application with rooms](https://gith
 
 Models:
 
-$ rails g model Conversation author:references receiver:references
+$ rails g model Conversation author_id:integer:index receiver_id:integer:index
 $ rails g model PersonalMessage body:text conversation:references position:integer:index user:references
 
 Gems:
