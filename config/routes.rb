@@ -3,6 +3,7 @@ Rails.application.routes.draw do
 
   resources :conversations
   resources :personal_messages
+  resources :users
 
   mount ActionCable.server => '/cable'
 

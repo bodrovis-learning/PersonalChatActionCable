@@ -17,7 +17,7 @@
 <% end %>
 
 <% if user_signed_in? %>
-  <p><%= link_to 'Conversations', root_path %></p>
+  <p><%= link_to 'Conversations', root_path %> | <%= link_to 'Users', users_path %></p>
   <p>
     Logged in as <%= current_user.email %>
     <%= link_to 'Log Off', destroy_user_session_path, method: :delete %>

@@ -1,12 +1,13 @@
 class PersonalMessagesController < ApplicationController
+  before_action :check_receiver!, only: [:new, :create]
+
   def new
     @personal_message = current_user.personal_messages.build
-    @receivers = User.all
   end
 
   def create
     conversation = Conversation.find_or_create_by(author_id: current_user.id,
-                                                  receiver_id: params[:receiver])
+                                                  receiver_id: @receiver.id)
     if conversation
       @personal_message = current_user.personal_messages.build(personal_message_params)
       @personal_message.conversation = conversation
@@ -21,5 +22,10 @@ class PersonalMessagesController < ApplicationController
 
   def personal_message_params
     params.require(:personal_message).permit(:body)
+  end
+
+  def check_receiver!
+    @receiver = User.find_by(id: params[:receiver])
+    redirect_to root_path unless @receiver
   end
 end

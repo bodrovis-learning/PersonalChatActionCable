@@ -1,8 +1,7 @@
-<h1>New</h1>
+<h1>New message to <%= @receiver.email %></h1>
 
 <%= form_for @personal_message do |f| %>
-  <%= label_tag 'Recevier', 'receiver' %>
-  <%= select_tag 'receiver', options_from_collection_for_select(@receivers, "id", "email") %>
+  <%= hidden_field_tag 'receiver', @receiver.id %>
 
   <%= f.label :body %>
   <%= f.text_area :body %>

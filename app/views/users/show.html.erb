@@ -1,0 +1,3 @@
+<h1>Profile of <%= @user.email %></h1>
+
+<p><%= link_to 'Write him a message', new_personal_message_path(receiver: @user.id) %></p>
