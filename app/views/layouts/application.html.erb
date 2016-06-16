@@ -17,6 +17,7 @@
 <% end %>
 
 <% if user_signed_in? %>
+  <div id="current-user" data-id="<%= current_user.id %>"></div>
   <p><%= link_to 'Conversations', root_path %> | <%= link_to 'Users', users_path %></p>
   <p>
     Logged in as <%= current_user.email %>

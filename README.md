@@ -1,8 +1,15 @@
 # Conversations Between Users (1-to-1) with Devise and ActionCable
 
-**WIP**
+This app has the following features:
 
-Based on another tutorial on creating [chat application with rooms](https://github.com/bodrovis-learning/actioncable_devise_demo).
+* User management
+* 1-to-1 threaded chat (like on Facebook/LinkedIn)
+* Notifications about incoming messages powered by ActionCable. So basically when a user receives
+a message, a notification appears at the bottom of the page with an actual text and a link to the
+conversation (thread)
+
+Based on another tutorial on creating [chat application with rooms](https://github.com/bodrovis-learning/actioncable_devise_demo),
+so for more details about the ActionCable setup and deploying to Heroku refer to the README of that app.
 
 Models:
 
