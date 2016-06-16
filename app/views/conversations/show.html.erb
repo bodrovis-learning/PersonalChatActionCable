@@ -1,15 +1,25 @@
 <h1>To <%= @conversation.receiver.email %></h1>
 
-<% @conversation.personal_messages.each do |personal_messages| %>
-  <p><%= personal_messages.body %></p>
-  <p>at <strong><%= personal_messages.created_at %></strong><br>
-    by <strong><%= personal_messages.user.email %></strong></p>
-  <hr>
-<% end %>
+<div class="group">
+  <div id="conversations-sidebar">
+    <h2>Your conversations</h2>
+    
+    <%= render @conversations %>
+  </div>
 
-<%= form_for @personal_message, url: conversation_path(@conversation), method: :patch do |f| %>
-  <%= f.label :body %>
-  <%= f.text_area :body %>
+  <div id="conversation-main">
+    <% @conversation.personal_messages.each do |personal_messages| %>
+      <p><%= personal_messages.body %></p>
+      <p>at <strong><%= personal_messages.created_at %></strong><br>
+        by <strong><%= personal_messages.user.email %></strong></p>
+      <hr>
+    <% end %>
 
-  <%= f.submit %>
-<% end %>
+    <%= form_for @personal_message, url: conversation_path(@conversation), method: :patch do |f| %>
+      <%= f.label :body %>
+      <%= f.text_area :body %>
+
+      <%= f.submit %>
+    <% end %>
+  </div>
+</div>

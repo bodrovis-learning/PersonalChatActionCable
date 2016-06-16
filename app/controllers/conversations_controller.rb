@@ -8,6 +8,7 @@ class ConversationsController < ApplicationController
 
   def show
     @personal_message = PersonalMessage.new
+    @conversations = Conversation.participating(current_user)
   end
 
   def update
