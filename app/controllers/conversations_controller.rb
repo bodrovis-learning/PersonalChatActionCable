@@ -11,19 +11,7 @@ class ConversationsController < ApplicationController
     @conversations = Conversation.participating(current_user)
   end
 
-  def update
-    @personal_message = current_user.personal_messages.build(personal_message_params)
-    @personal_message.conversation = @conversation
-    @personal_message.save!
-    flash[:success] = "ok!"
-    redirect_to conversation_path(@conversation)
-  end
-
   private
-
-  def personal_message_params
-    params.require(:personal_message).permit(:body)
-  end
 
   def set_conversation
     @conversation = Conversation.find_by(id: params[:id])
