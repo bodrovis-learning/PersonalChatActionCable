@@ -2,10 +2,11 @@ class NotificationBroadcastJob < ApplicationJob
   queue_as :default
 
   def perform(personal_message)
-    ActionCable.server.broadcast "notifications_#{personal_message.user.id}_channel",
-                                 message: render_message(personal_message),
-                                 conversation_id: personal_message.conversation.id
-
+    unless personal_message.user == personal_message.receiver
+      ActionCable.server.broadcast "notifications_#{personal_message.user.id}_channel",
+                                   message: render_message(personal_message),
+                                   conversation_id: personal_message.conversation.id
+    end
     ActionCable.server.broadcast "notifications_#{personal_message.receiver.id}_channel",
                                  notification: render_notification(personal_message),
                                  message: render_message(personal_message),

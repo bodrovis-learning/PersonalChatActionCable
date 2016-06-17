@@ -24,6 +24,7 @@ jQuery ->
     $(this).parents('#notification').fadeOut(1000)
 
   $('.async-conversation').submit (e) ->
+    console.log 'click'
     $this = $(this)
     textarea = $this.find('#personal_message_body')
     if $.trim(textarea.val()).length > 1
