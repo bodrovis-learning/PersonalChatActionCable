@@ -14,7 +14,7 @@ class Conversation < ApplicationRecord
     author == user || receiver == user
   end
 
-  scope :between, -> (sender_id, recipient_id) do
-    where("(conversations.author_id = ? AND conversations.receiver_id =?) OR (conversations.author_id = ? AND conversations.receiver_id =?)", sender_id, recipient_id, recipient_id, sender_id).first
+  scope :between, -> (sender_id, receiver_id) do
+    where(author_id: sender_id, receiver_id: receiver_id).or(where(author_id: receiver_id, receiver_id: sender_id)).limit(1)
   end
 end
