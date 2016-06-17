@@ -6,8 +6,9 @@ class PersonalMessagesController < ApplicationController
   end
 
   def create
-    conversation = Conversation.find_or_create_by(author_id: current_user.id,
-                                                  receiver_id: @receiver.id)
+    conversation = Conversation.between(current_user.id, @receiver.id)
+    conversation ||= Conversation.create(author_id: current_user.id,
+                                         receiver_id: @receiver.id)
     if conversation
       @personal_message = current_user.personal_messages.build(personal_message_params)
       @personal_message.conversation = conversation

@@ -13,4 +13,8 @@ class Conversation < ApplicationRecord
   def participates?(user)
     author == user || receiver == user
   end
+
+  scope :between, -> (sender_id, recipient_id) do
+    where("(conversations.author_id = ? AND conversations.receiver_id =?) OR (conversations.author_id = ? AND conversations.receiver_id =?)", sender_id, recipient_id, recipient_id, sender_id).first
+  end
 end
