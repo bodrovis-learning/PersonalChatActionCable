@@ -15,6 +15,7 @@ jQuery ->
       if conversation.size() > 0 && conversation.data('conversation-id') is data['conversation_id']
         conversation.append data['message']
       else
+        $.getScript('/conversations') if $('#conversations').size() > 0
         $('body').append(data['notification']) if data['notification']
 
     send_message: (message, conversation_id) ->
