@@ -3,7 +3,11 @@ class ConversationsController < ApplicationController
   before_action :check_participating!, except: [:index]
 
   def index
-    @conversations = Conversation.participating(current_user)
+    @conversations = Conversation.participating(current_user).order('updated_at DESC')
+    respond_to do |format|
+      format.html
+      format.js
+    end
   end
 
   def show
