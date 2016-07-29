@@ -9,6 +9,6 @@ class User < ApplicationRecord
   has_many :personal_messages, dependent: :destroy
 
   def online?
-    active_at > 5.minutes.ago || current_sign_in_at > 5.minutes.ago
+    !Redis.new.get("user_#{self.id}_online").nil?
   end
 end

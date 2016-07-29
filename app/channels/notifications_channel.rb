@@ -1,11 +1,12 @@
 # Be sure to restart your server when you modify this file. Action Cable runs in a loop that does not support auto reloading.
 class NotificationsChannel < ApplicationCable::Channel
   def subscribed
+    redis.set("user_#{current_user.id}_online", "1")
     stream_from("notifications_#{current_user.id}_channel")
   end
 
   def unsubscribed
-    # Any cleanup needed when channel is unsubscribed
+    redis.del("user_#{current_user.id}_online")
   end
 
   def send_message(data)
@@ -15,5 +16,11 @@ class NotificationsChannel < ApplicationCable::Channel
       personal_message.conversation = conversation
       personal_message.save!
     end
+  end
+
+  private
+
+  def redis
+    Redis.new
   end
 end
