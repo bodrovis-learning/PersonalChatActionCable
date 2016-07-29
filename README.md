@@ -9,6 +9,7 @@ This app has the following features:
 * Notifications about incoming messages powered by ActionCable. So basically when a user receives
 a message, a notification appears at the bottom of the page with an actual text and a link to the
 conversation (thread)
+* "User is online/offline" feature (powered by Redis and ActionCable)
 
 Based on another tutorial on creating [chat application with rooms](https://github.com/bodrovis-learning/actioncable_devise_demo),
 so for more details about the ActionCable setup and deploying to Heroku refer to the README of that app.
