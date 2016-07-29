@@ -1,6 +1,6 @@
 <div>
   From <strong><%= conversation.author.email %></strong> to
-  <strong><%= conversation.receiver.email %></strong>
+  <strong><%= conversation.receiver.email %> (<%= conversation.receiver.online? ? 'online' : 'offline' %>)</strong>
   <br>
   <%= link_to 'View conversation', conversation_path(conversation) %>
   <hr>

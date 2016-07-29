@@ -7,10 +7,14 @@ class NotificationBroadcastJob < ApplicationJob
                                    message: render_message(personal_message),
                                    conversation_id: personal_message.conversation.id
     end
-    ActionCable.server.broadcast "notifications_#{personal_message.receiver.id}_channel",
-                                 notification: render_notification(personal_message),
-                                 message: render_message(personal_message),
-                                 conversation_id: personal_message.conversation.id
+    if personal_message.receiver.online?
+      ActionCable.server.broadcast "notifications_#{personal_message.receiver.id}_channel",
+                                   notification: render_notification(personal_message),
+                                   message: render_message(personal_message),
+                                   conversation_id: personal_message.conversation.id
+    else
+      NotificationsMailer.new_message(personal_message).deliver_now
+    end
   end
 
   private
